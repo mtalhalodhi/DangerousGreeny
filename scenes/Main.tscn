@@ -1,7 +1,13 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://tilesets/walls.tres" type="TileSet" id=1]
 [ext_resource path="res://sprites/walls.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Gem.cs" type="Script" id=3]
+[ext_resource path="res://scripts/Greeny.cs" type="Script" id=4]
+[ext_resource path="res://fonts/Minecraft.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://sprites/greeny.png" type="Texture" id=6]
+[ext_resource path="res://scripts/GUI.cs" type="Script" id=7]
+[ext_resource path="res://scripts/Level.cs" type="Script" id=8]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 1 )
@@ -10,6 +16,18 @@ colors = PoolColorArray( 1, 1, 1, 1 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 width = 100
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=33]
+animations = [ {
+"frames": [ SubResource( 36 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=35]
 radius = 5.0
@@ -134,49 +152,52 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=37]
 atlas = ExtResource( 2 )
 region = Rect2( 80, 0, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=33]
+[sub_resource type="SpriteFrames" id=38]
 animations = [ {
-"frames": [ SubResource( 32 ) ],
+"frames": [ SubResource( 37 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 16, 16 )
+[sub_resource type="CircleShape2D" id=40]
+radius = 8.0
 
-[sub_resource type="SpriteFrames" id=31]
-animations = [ {
-"frames": [ SubResource( 30 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 7, 10 )
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 7.0
 
-[node name="Main" type="Node2D"]
+[sub_resource type="CircleShape2D" id=39]
+radius = 7.0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.25, 0.25 )
-limit_left = 0
-limit_top = 0
-limit_right = 0
-limit_bottom = 0
-limit_smoothed = true
+[sub_resource type="SpriteFrames" id=31]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=42]
+size = 47
+outline_size = 4
+use_mipmaps = true
+font_data = ExtResource( 5 )
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Map" type="Node2D" parent="."]
 
 [node name="Light2D" type="Light2D" parent="Map"]
-position = Vector2( -5.72205e-06, -1.90735e-06 )
-scale = Vector2( 2.24, 128 )
+position = Vector2( -8, -8.00001 )
+scale = Vector2( 3.36, 208 )
 texture = SubResource( 2 )
 color = Color( 0.12549, 0.109804, 0.196078, 1 )
 energy = 0.7
@@ -187,120 +208,253 @@ range_item_cull_mask = 2
 light_mask = 2
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
+collision_layer = 0
+collision_mask = 0
 occluder_light_mask = 2
 format = 1
-tile_data = PoolIntArray( -262149, 4, 0, -327674, 8, 0, -196616, 4, 0, -196615, 4, 0, -196614, 8, 0, -196613, 0, 0, -196612, 0, 0, -196611, 4, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 8, 0, -262138, 8, 0, -262137, 8, 0, -131079, 0, 0, -131078, 0, 0, -131077, 0, 0, -131076, 8, 0, -131075, 8, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 4, 0, -196605, 0, 0, -196604, 8, 0, -196603, 8, 0, -196602, 8, 0, -65543, 0, 0, -65542, 8, 0, -65541, 4, 0, -65540, 4, 0, -65539, 8, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 4, 0, -131070, 4, 0, -131069, 0, 0, -131068, 0, 0, -131067, 8, 0, -131066, 0, 0, -7, 4, 0, -6, 4, 0, -5, 8, 0, -4, 8, 0, -3, 4, 0, -2, 0, 0, -1, 0, 0, -65536, 4, 0, -65535, 4, 0, -65534, 8, 0, -65533, 0, 0, -65532, 0, 0, -65531, 8, 0, -65530, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 8, 0, 65532, 8, 0, 65533, 8, 0, 65534, 8, 0, 65535, 8, 0, 0, 8, 0, 1, 4, 0, 2, 0, 0, 3, 8, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 131065, 8, 0, 131066, 4, 0, 131067, 8, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 0, 0, 65541, 4, 0, 65542, 8, 0, 196601, 0, 0, 196602, 4, 0, 196603, 8, 0, 196604, 8, 0, 196605, 4, 0, 196606, 4, 0, 196607, 0, 0, 131072, 0, 0, 131073, 4, 0, 131074, 0, 0, 131075, 4, 0, 131076, 8, 0, 131077, 4, 0, 131078, 8, 0, 262137, 8, 0, 262138, 8, 0, 262139, 8, 0, 262140, 4, 0, 262141, 4, 0, 262142, 0, 0, 262143, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 8, 0, 196613, 8, 0, 196614, 8, 0 )
+tile_data = PoolIntArray( -196617, 4, 0, -196616, 0, 0, -196615, 4, 0, -196614, 8, 0, -196613, 0, 0, -196612, 0, 0, -196611, 4, 0, -196610, 0, 0, -196609, 0, 0, -262144, 0, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 8, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -131081, 8, 0, -131080, 8, 0, -131079, 8, 0, -131078, 0, 0, -131077, 0, 0, -131076, 8, 0, -131075, 8, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 4, 0, -196605, 0, 0, -196604, 8, 0, -196603, 8, 0, -196602, 4, 0, -196601, 0, 0, -196600, 0, 0, -65545, 0, 0, -65544, 4, 0, -65543, 8, 0, -65542, 8, 0, -65541, 4, 0, -65540, 0, 0, -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 4, 0, -131070, 4, 0, -131069, 0, 0, -131068, 0, 0, -131067, 8, 0, -131066, 0, 0, -131065, 4, 0, -131064, 0, 0, -9, 0, 0, -8, 8, 0, -7, 4, 0, -6, 4, 0, -5, 8, 0, -4, 8, 0, -3, 4, 0, -2, 0, 0, -1, 0, 0, -65536, 4, 0, -65535, 4, 0, -65534, 8, 0, -65533, 0, 0, -65532, 0, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 0, 0, 65527, 0, 0, 65528, 4, 0, 65529, 4, 0, 65530, 0, 0, 65531, 8, 0, 65532, 8, 0, 65533, 8, 0, 65534, 8, 0, 65535, 8, 0, 0, 8, 0, 1, 4, 0, 2, 0, 0, 3, 8, 0, 4, 0, 0, 5, 0, 0, 6, 8, 0, 7, 4, 0, 8, 4, 0, 131063, 8, 0, 131064, 4, 0, 131065, 8, 0, 131066, 4, 0, 131067, 8, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 4, 0, 65538, 4, 0, 65539, 4, 0, 65540, 0, 0, 65541, 4, 0, 65542, 0, 0, 65543, 8, 0, 65544, 4, 0, 196599, 0, 0, 196600, 8, 0, 196601, 0, 0, 196602, 4, 0, 196603, 8, 0, 196604, 8, 0, 196605, 4, 0, 196606, 4, 0, 196607, 0, 0, 131072, 0, 0, 131073, 4, 0, 131074, 0, 0, 131075, 4, 0, 131076, 8, 0, 131077, 4, 0, 131078, 4, 0, 131079, 8, 0, 131080, 0, 0, 262135, 0, 0, 262136, 0, 0, 262137, 8, 0, 262138, 8, 0, 262139, 8, 0, 262140, 4, 0, 262141, 4, 0, 262142, 0, 0, 262143, 4, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 8, 0, 196613, 8, 0, 196614, 4, 0, 196615, 0, 0, 196616, 0, 0 )
 
 [node name="Foreground" type="TileMap" parent="Map"]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -262152, 8, 0, -262151, 0, 0, -262150, 10, 0, -262149, 8, 0, -262148, 4, 0, -262147, 10, 0, -262146, 10, 0, -262145, 4, 0, -327680, 8, 0, -327679, 8, 0, -327678, 4, 0, -327677, 4, 0, -327676, 10, 0, -327675, 8, 0, -327674, 4, 0, -327673, 0, 0, -196616, 7, 0, -262137, 5, 0, -131080, 7, 0, -196601, 5, 0, -65544, 7, 0, -65541, 6, 0, -65537, 6, 0, -131069, 6, 0, -131065, 5, 0, -8, 7, 0, -65530, 1, 0, -65529, 8, 0, 65528, 8, 0, 65529, 3, 0, 65533, 6, 0, 1, 6, 0, 5, 1, 0, 6, 8, 0, 7, 4, 0, 131064, 7, 0, 65543, 5, 0, 196600, 7, 0, 196603, 1, 0, 196604, 2, 0, 196605, 2, 0, 196606, 3, 0, 131073, 1, 0, 131074, 2, 0, 131075, 3, 0, 131079, 5, 0, 262136, 7, 0, 196609, 5, 0, 196615, 5, 0, 327672, 0, 0, 327673, 2, 0, 327674, 4, 0, 327675, 2, 0, 327676, 2, 0, 327677, 8, 0, 327678, 0, 0, 327679, 2, 0, 262144, 2, 0, 262145, 4, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 8, 0, 262150, 4, 0, 262151, 8, 0 )
+tile_data = PoolIntArray( -393227, 8, 0, -393226, 8, 0, -393225, 8, 0, -393224, 8, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 8, 0, -393217, 8, 0, -458752, 8, 0, -458751, 8, 0, -458750, 8, 0, -458749, 8, 0, -458748, 8, 0, -458747, 8, 0, -458746, 8, 0, -458745, 0, 0, -458744, 8, 0, -458743, 8, 0, -327691, 8, 0, -327690, 8, 0, -327689, 8, 0, -327688, 4, 0, -327687, 4, 0, -327686, 4, 0, -327685, 0, 0, -327684, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 4, 0, -393215, 4, 0, -393214, 0, 0, -393213, 0, 0, -393212, 8, 0, -393211, 8, 0, -393210, 8, 0, -393209, 0, 0, -393208, 0, 0, -393207, 8, 0, -262155, 8, 0, -262154, 8, 0, -262153, 0, 0, -262152, 8, 0, -262151, 0, 0, -262150, 10, 0, -262149, 4, 0, -262148, 4, 0, -262147, 10, 0, -262146, 10, 0, -262145, 4, 0, -327680, 8, 0, -327679, 0, 0, -327678, 0, 0, -327677, 4, 0, -327676, 10, 0, -327675, 8, 0, -327674, 4, 0, -327673, 0, 0, -327672, 8, 0, -327671, 0, 0, -196619, 8, 0, -196618, 7, 0, -262135, 5, 0, -131083, 8, 0, -131082, 7, 0, -196599, 5, 0, -65547, 8, 0, -65546, 7, 0, -65543, 6, 0, -65539, 6, 0, -131071, 6, 0, -131067, 6, 0, -131063, 5, 0, -11, 8, 0, -10, 7, 0, -65527, 5, 0, 65525, 8, 0, 65526, 8, 0, 65527, 3, 0, 65531, 6, 0, 65535, 6, 0, 3, 6, 0, 7, 1, 0, 8, 2, 0, 9, 8, 0, 131061, 8, 0, 131062, 7, 0, 65545, 5, 0, 196597, 8, 0, 196598, 7, 0, 196603, 1, 0, 196604, 2, 0, 196605, 2, 0, 196606, 3, 0, 131073, 1, 0, 131074, 2, 0, 131075, 2, 0, 131076, 8, 0, 131077, 3, 0, 131081, 5, 0, 262133, 8, 0, 262134, 7, 0, 196609, 5, 0, 196616, 1, 0, 196617, 8, 0, 327669, 8, 0, 327670, 0, 0, 327671, 2, 0, 327672, 2, 0, 327673, 2, 0, 327674, 2, 0, 327675, 2, 0, 327676, 2, 0, 327677, 8, 0, 327678, 0, 0, 327679, 4, 0, 262144, 2, 0, 262145, 4, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 8, 0, 262150, 4, 0, 262151, 0, 0, 262152, 0, 0, 262153, 8, 0, 393205, 8, 0, 393206, 8, 0, 393207, 8, 0, 393208, 8, 0, 393209, 8, 0, 393210, 8, 0, 393211, 8, 0, 393212, 4, 0, 393213, 8, 0, 393214, 8, 0, 393215, 4, 0, 327680, 8, 0, 327681, 8, 0, 327682, 8, 0, 327683, 8, 0, 327684, 8, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 8, 0, 327689, 8, 0 )
 
-[node name="Gems" type="Node2D" parent="."]
+[node name="Pipe" type="AnimatedSprite" parent="Map"]
+position = Vector2( -136, 56 )
+frames = SubResource( 33 )
 
-[node name="Purple Gem" type="StaticBody2D" parent="Gems"]
-position = Vector2( -104, -56 )
+[node name="Gems" type="Node2D" parent="Map"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Purple Gem"]
+[node name="Purple Gem" type="Area2D" parent="Map/Gems"]
+position = Vector2( -136, -56 )
+script = ExtResource( 3 )
+Score = 150
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Purple Gem"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Purple Gem"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Purple Gem"]
 frames = SubResource( 29 )
-frame = 1
 playing = true
 
-[node name="Red Diamond" type="StaticBody2D" parent="Gems"]
-position = Vector2( 104, -56 )
+[node name="Red Diamond" type="Area2D" parent="Map/Gems"]
+position = Vector2( 136, -56 )
+script = ExtResource( 3 )
+Score = 250
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Red Diamond"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Red Diamond"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Red Diamond"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Red Diamond"]
 frames = SubResource( 20 )
-frame = 7
+frame = 6
 playing = true
 
-[node name="Diamond1" type="StaticBody2D" parent="Gems"]
-position = Vector2( -104, -8 )
+[node name="Diamond1" type="Area2D" parent="Map/Gems"]
+position = Vector2( -136, -8 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond1"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond1"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond1"]
 frames = SubResource( 11 )
-frame = 7
+frame = 6
 playing = true
 
-[node name="Diamond2" type="StaticBody2D" parent="Gems"]
-position = Vector2( -72, -40 )
+[node name="Diamond2" type="Area2D" parent="Map/Gems"]
+position = Vector2( -104, -40 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond2"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond2"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond2"]
 frames = SubResource( 11 )
 frame = 2
 playing = true
 
-[node name="Diamond3" type="StaticBody2D" parent="Gems"]
-position = Vector2( -40, -8 )
+[node name="Diamond3" type="Area2D" parent="Map/Gems"]
+position = Vector2( -72, -8 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond3"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond3"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond3"]
 frames = SubResource( 11 )
+frame = 7
 playing = true
 
-[node name="Diamond4" type="StaticBody2D" parent="Gems"]
-position = Vector2( 24, -8 )
+[node name="Diamond4" type="Area2D" parent="Map/Gems"]
+position = Vector2( -8, -8 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond4"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond4"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond4"]
 frames = SubResource( 11 )
-frame = 4
+frame = 3
 playing = true
 
-[node name="Diamond5" type="StaticBody2D" parent="Gems"]
-position = Vector2( 56, -40 )
+[node name="Diamond5" type="Area2D" parent="Map/Gems"]
+position = Vector2( -40, -40 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond5"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond5"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond5"]
 frames = SubResource( 11 )
 frame = 1
 playing = true
 
-[node name="Diamond6" type="StaticBody2D" parent="Gems"]
-position = Vector2( 88, -8 )
+[node name="Diamond6" type="Area2D" parent="Map/Gems"]
+position = Vector2( 56, -8 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gems/Diamond6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond6"]
 shape = SubResource( 35 )
 
-[node name="Sprite" type="AnimatedSprite" parent="Gems/Diamond6"]
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond6"]
 frames = SubResource( 11 )
+frame = 7
 playing = true
 
-[node name="Cup" type="AnimatedSprite" parent="."]
-position = Vector2( -8, -40 )
-frames = SubResource( 33 )
+[node name="Diamond7" type="Area2D" parent="Map/Gems"]
+position = Vector2( 88, -40 )
+script = ExtResource( 3 )
+Score = 50
 
-[node name="Door" type="Sprite" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond7"]
+shape = SubResource( 35 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond7"]
+frames = SubResource( 11 )
+frame = 1
+playing = true
+
+[node name="Diamond8" type="Area2D" parent="Map/Gems"]
+position = Vector2( 120, -8 )
+script = ExtResource( 3 )
+Score = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond8"]
+shape = SubResource( 35 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond8"]
+frames = SubResource( 11 )
+frame = 3
+playing = true
+
+[node name="Diamond9" type="Area2D" parent="Map/Gems"]
+position = Vector2( -136, 24 )
+script = ExtResource( 3 )
+Score = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Gems/Diamond9"]
+shape = SubResource( 35 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond9"]
+frames = SubResource( 11 )
+frame = 3
+playing = true
+
+[node name="Cup" type="Area2D" parent="Map"]
+position = Vector2( 24, -40 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Map/Cup"]
+frames = SubResource( 38 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Cup"]
+shape = SubResource( 40 )
+
+[node name="Door" type="Area2D" parent="Map"]
 position = Vector2( 40, 48 )
+
+[node name="Door" type="Sprite" parent="Map/Door"]
 texture = ExtResource( 2 )
 hframes = 16
 vframes = 8
 frame = 6
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Door"]
+position = Vector2( 0, 6 )
+shape = SubResource( 41 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+limit_left = 0
+limit_top = -96
+limit_right = 152
+limit_bottom = -96
+
 [node name="Greeny" type="KinematicBody2D" parent="."]
-position = Vector2( -96, 56 )
+position = Vector2( -104, 56 )
+script = ExtResource( 4 )
+Speed = 100.0
+JumpSpeed = 200.0
+Gravity = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Greeny"]
+shape = SubResource( 34 )
+
+[node name="Area2D" type="Area2D" parent="Greeny"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Greeny/Area2D"]
+shape = SubResource( 39 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Greeny"]
 frames = SubResource( 31 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Greeny"]
-shape = SubResource( 34 )
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
+
+[node name="Container" type="Control" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreCounter" type="Label" parent="GUI/Container"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -203.0
+margin_top = 35.0
+margin_right = -31.0
+margin_bottom = 83.0
+custom_colors/font_outline_modulate = Color( 0.14902, 0.356863, 0.329412, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 42 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CupCollectedLabel" type="Label" parent="GUI/Container"]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -52.0
+margin_bottom = -4.0
+custom_colors/font_outline_modulate = Color( 0.878431, 0.388235, 0.0705882, 1 )
+custom_fonts/font = SubResource( 42 )
+text = "GO THRU THE DOOR!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
