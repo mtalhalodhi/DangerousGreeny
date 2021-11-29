@@ -1,17 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://fonts/Minecraft.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://tilesets/walls.tres" type="TileSet" id=2]
 [ext_resource path="res://sprites/walls.png" type="Texture" id=3]
 [ext_resource path="res://sprites/light.png" type="Texture" id=4]
-
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 1 )
-colors = PoolColorArray( 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
-width = 100
+[ext_resource path="res://scripts/MainMenu.cs" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
@@ -75,19 +68,12 @@ use_mipmaps = true
 font_data = ExtResource( 1 )
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Map" type="Node2D" parent="."]
 
-[node name="Light2D" type="Light2D" parent="Map"]
-position = Vector2( -1.33514e-05, -9.53674e-06 )
-scale = Vector2( 3.2, 192 )
-texture = SubResource( 2 )
-color = Color( 0, 0, 0, 1 )
-energy = 0.75
-mode = 2
-range_item_cull_mask = 2
-
 [node name="Background" type="TileMap" parent="Map"]
+modulate = Color( 0.219608, 0.219608, 0.219608, 1 )
 light_mask = 2
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
@@ -106,19 +92,19 @@ tile_data = PoolIntArray( -65542, 1, 0, -65541, 3, 0, -65539, 1, 0, -65538, 8, 0
 [node name="Crown" type="AnimatedSprite" parent="Map"]
 position = Vector2( -24, -8 )
 frames = SubResource( 9 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="Crown2" type="AnimatedSprite" parent="Map"]
 position = Vector2( 56, 24 )
 frames = SubResource( 9 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="Map"]
+light_mask = 0
 position = Vector2( 32, 48 )
 frames = SubResource( 15 )
-frame = 2
 playing = true
 offset = Vector2( -56, -8 )
 
@@ -128,13 +114,16 @@ rotation = 0.785398
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 color = Color( 1, 0.427451, 0.427451, 1 )
+energy = 1.5
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.1
 
 [node name="Fire2" type="AnimatedSprite" parent="Map"]
+light_mask = 0
 position = Vector2( 112, 80 )
 frames = SubResource( 15 )
+frame = 3
 playing = true
 offset = Vector2( -56, -8 )
 
@@ -144,6 +133,7 @@ rotation = 0.785398
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 4 )
 color = Color( 1, 0.427451, 0.427451, 1 )
+energy = 1.5
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_gradient_length = 0.1
@@ -162,17 +152,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CupCollectedLabel" type="Label" parent="CanvasLayer/Container"]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Container"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -480.0
 margin_top = 32.0
 margin_right = 480.0
 margin_bottom = 131.0
+rect_pivot_offset = Vector2( 545, 32 )
 custom_colors/font_outline_modulate = Color( 0.878431, 0.388235, 0.0705882, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "DANGEROUS
 GREENY"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FooterLabel" type="Label" parent="CanvasLayer/Container"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -68.0
+margin_right = 448.0
+margin_bottom = 31.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 545, 32 )
+custom_colors/font_outline_modulate = Color( 0.878431, 0.388235, 0.0705882, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Press ENTER to start..."
 align = 1
 valign = 1
 __meta__ = {

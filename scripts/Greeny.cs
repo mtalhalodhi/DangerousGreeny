@@ -4,6 +4,7 @@ public class Greeny : KinematicBody2D
 {
 	[Export] public int Score = 0;
 	[Export] public bool CupCollected = false;
+    [Export] public bool LevelCompleted = false;
 
 	[Export] public float Speed = 0;
 	[Export] public float JumpSpeed = 0;
@@ -61,10 +62,7 @@ public class Greeny : KinematicBody2D
 		}
 		if (area.Name.ToLower().Contains("door"))
 		{
-			if (CupCollected)
-			{
-				GetTree().Quit();
-			}
+            LevelCompleted = CupCollected;
 		}
 	}
 }

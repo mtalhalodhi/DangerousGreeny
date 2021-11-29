@@ -7,6 +7,7 @@ public class GUI : Node
 	public Label ScoreCounter = null;
 	public Label CupCollectedLabel = null;
 	public Control PauseMenu = null;
+    public bool QuitButtonPressed = false;
 
 	public bool PausedMenuOpen
 	{
@@ -61,6 +62,7 @@ public class GUI : Node
 
 	private void _on_QuitButton_pressed()
 	{
-		GetTree().Quit();
+		QuitButtonPressed = true;
+		TogglePause();
 	}
 }
