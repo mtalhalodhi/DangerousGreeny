@@ -7,7 +7,7 @@ public class GUI : Node
 	public Label ScoreCounter = null;
 	public Label CupCollectedLabel = null;
 	public Control PauseMenu = null;
-    public bool QuitButtonPressed = false;
+	public bool QuitButtonPressed = false;
 
 	public bool PausedMenuOpen
 	{

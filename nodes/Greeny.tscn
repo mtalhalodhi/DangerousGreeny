@@ -1,13 +1,60 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/Greeny.cs" type="Script" id=1]
 [ext_resource path="res://sprites/greeny.png" type="Texture" id=2]
+[ext_resource path="res://sprites/walls.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Gun.cs" type="Script" id=4]
+[ext_resource path="res://nodes/Bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://fonts/Minecraft.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id=39]
 radius = 7.0
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 3 )
+region = Rect2( 112, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 16, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=49]
+animations = [ {
+"frames": [ SubResource( 47 ), SubResource( 48 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=50]
+font_data = ExtResource( 6 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 160, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 160, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 160, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 160, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=31]
 animations = [ {
@@ -17,14 +64,25 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 3 )
+region = Rect2( 112, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=46]
+animations = [ {
+"frames": [ SubResource( 45 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Greeny" type="KinematicBody2D"]
-position = Vector2( -112, 56 )
 script = ExtResource( 1 )
 Speed = 100.0
 JumpSpeed = 200.0
 Gravity = 500.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GreenyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -32,5 +90,43 @@ shape = SubResource( 34 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 39 )
 
+[node name="JetpackSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0, 1 )
+frames = SubResource( 49 )
+speed_scale = 4.0
+playing = true
+
+[node name="FuelLabel" type="Label" parent="JetpackSprite"]
+margin_left = -11.0
+margin_top = -17.0
+margin_right = 35.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = SubResource( 50 )
+text = "0%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathSprite" type="AnimatedSprite" parent="."]
+visible = false
+light_mask = 0
+frames = SubResource( 44 )
+speed_scale = 0.75
+
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 31 )
+
+[node name="Gun" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 4 )
+Bullet = ExtResource( 5 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Gun"]
+position = Vector2( 16, 0 )
+frames = SubResource( 46 )
+
+[node name="BulletSpawn" type="Node2D" parent="Gun/Sprite"]
+position = Vector2( 8, 0 )

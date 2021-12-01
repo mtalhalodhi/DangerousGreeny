@@ -11,6 +11,7 @@ public class GameManager : Node
 
 	public GameState State;
 	public int Lives = 3;
+	public int Score = 0;
 	public int CurrentLevel = -1;
 
 	private Node current = null;
@@ -36,7 +37,7 @@ public class GameManager : Node
 		if (State == GameState.Transition)
 		{
 			var transition = current as Transition;
-			if (transition.TransitionCompleted) 
+			if (transition.TransitionCompleted)
 			{
 				transition.QueueFree();
 
@@ -54,6 +55,7 @@ public class GameManager : Node
 			{
 				current.QueueFree();
 				Lives = level.Lives;
+				Score = level.Score;
 
 				var transition = Transition.Instance() as Transition;
 				transition.SetLevelsLeft(Levels.Length - CurrentLevel - 1);
@@ -64,33 +66,50 @@ public class GameManager : Node
 			}
 			if (level.LevelQuit)
 			{
-				current.QueueFree();
-
-				Lives = 3;
-				CurrentLevel = -1;
-				State = GameState.MainMenu;
-				current = MainMenu.Instance();
-				AddChild(current);
+				LoadMainMenu();
+			}
+			if (level.LevelLost)
+			{
+				LoadMainMenu();
 			}
 		}
 	}
 
 	public void LoadLevel(int index)
 	{
-		Lives = 3;
 
 		if (State == GameState.Level)
 		{
 			var currentLevel = current as Level;
 			Lives = currentLevel.Lives;
+			Score = currentLevel.Score;
+		}
+		else if (State == GameState.MainMenu)
+		{
+			Lives = 3;
+			Score = 0;
 		}
 
 		State = GameState.Level;
 		var level = Levels[index].Instance() as Level;
 		CurrentLevel = index;
 		level.Lives = Lives;
+		level.Score = Score;
 
+		current.QueueFree();
 		current = level;
+		AddChild(current);
+	}
+
+	public void LoadMainMenu()
+	{
+		current.QueueFree();
+
+		Lives = 3;
+		CurrentLevel = -1;
+		Score = 0;
+		State = GameState.MainMenu;
+		current = MainMenu.Instance();
 		AddChild(current);
 	}
 }

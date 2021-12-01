@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scripts/Gem.cs" type="Script" id=1]
 [ext_resource path="res://tilesets/walls.tres" type="TileSet" id=2]
@@ -6,18 +6,7 @@
 [ext_resource path="res://sprites/walls.png" type="Texture" id=4]
 [ext_resource path="res://scripts/Level.cs" type="Script" id=5]
 [ext_resource path="res://nodes/GUI.tscn" type="PackedScene" id=6]
-
-[sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 16, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=33]
-animations = [ {
-"frames": [ SubResource( 36 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[ext_resource path="res://nodes/Pipe.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=35]
 radius = 5.0
@@ -182,9 +171,8 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -327690, 8, 0, -327689, 8, 0, -327688, 4, 0, -327687, 4, 0, -327686, 4, 0, -327685, 0, 0, -327684, 0, 0, -327683, 0, 0, -327682, 0, 0, -327681, 0, 0, -393216, 4, 0, -393215, 4, 0, -393214, 0, 0, -393213, 0, 0, -393212, 8, 0, -393211, 8, 0, -393210, 8, 0, -393209, 0, 0, -393208, 0, 0, -393207, 8, 0, -262154, 8, 0, -262153, 0, 0, -262152, 8, 0, -262151, 0, 0, -262150, 10, 0, -262149, 4, 0, -262148, 4, 0, -262147, 10, 0, -262146, 10, 0, -262145, 4, 0, -327680, 8, 0, -327679, 0, 0, -327678, 0, 0, -327677, 4, 0, -327676, 10, 0, -327675, 8, 0, -327674, 4, 0, -327673, 0, 0, -327672, 8, 0, -327671, 0, 0, -196618, 7, 0, -262135, 5, 0, -131082, 7, 0, -196599, 5, 0, -65546, 7, 0, -65543, 6, 0, -65539, 6, 0, -131071, 6, 0, -131067, 6, 0, -131063, 5, 0, -10, 7, 0, -65527, 5, 0, 65526, 8, 0, 65527, 3, 0, 65531, 6, 0, 65535, 6, 0, 3, 6, 0, 7, 1, 0, 8, 2, 0, 9, 8, 0, 131062, 7, 0, 65545, 5, 0, 196598, 7, 0, 196602, 1, 0, 196603, 8, 0, 196604, 2, 0, 196605, 2, 0, 196606, 3, 0, 131073, 1, 0, 131074, 2, 0, 131075, 2, 0, 131076, 8, 0, 131077, 3, 0, 131081, 5, 0, 262134, 7, 0, 196609, 5, 0, 196616, 1, 0, 196617, 8, 0, 327670, 0, 0, 327671, 2, 0, 327672, 2, 0, 327673, 2, 0, 327674, 2, 0, 327675, 2, 0, 327676, 2, 0, 327677, 8, 0, 327678, 0, 0, 327679, 4, 0, 262144, 2, 0, 262145, 8, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 8, 0, 262150, 4, 0, 262151, 0, 0, 262152, 0, 0, 262153, 8, 0, 393206, 8, 0, 393207, 8, 0, 393208, 10, 0, 393209, 10, 0, 393210, 4, 0, 393211, 10, 0, 393212, 4, 0, 393213, 8, 0, 393214, 0, 0, 393215, 0, 0, 327680, 8, 0, 327681, 8, 0, 327682, 0, 0, 327683, 8, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 8, 0, 327689, 8, 0 )
 
-[node name="Pipe" type="AnimatedSprite" parent="Map"]
+[node name="Pipe" parent="Map" instance=ExtResource( 7 )]
 position = Vector2( -136, 56 )
-frames = SubResource( 33 )
 
 [node name="Gems" type="Node2D" parent="Map"]
 
@@ -198,7 +186,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Purple Gem"]
 frames = SubResource( 29 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Red Diamond" type="Area2D" parent="Map/Gems"]
@@ -211,7 +199,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Red Diamond"]
 frames = SubResource( 20 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="Diamond1" type="Area2D" parent="Map/Gems"]
@@ -224,7 +212,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond1"]
 frames = SubResource( 11 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="Diamond2" type="Area2D" parent="Map/Gems"]
@@ -237,7 +225,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond2"]
 frames = SubResource( 11 )
-frame = 5
+frame = 3
 playing = true
 
 [node name="Diamond3" type="Area2D" parent="Map/Gems"]
@@ -250,7 +238,6 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond3"]
 frames = SubResource( 11 )
-frame = 2
 playing = true
 
 [node name="Diamond4" type="Area2D" parent="Map/Gems"]
@@ -263,7 +250,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond4"]
 frames = SubResource( 11 )
-frame = 6
+frame = 4
 playing = true
 
 [node name="Diamond5" type="Area2D" parent="Map/Gems"]
@@ -276,7 +263,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond5"]
 frames = SubResource( 11 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="Diamond6" type="Area2D" parent="Map/Gems"]
@@ -289,7 +276,6 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond6"]
 frames = SubResource( 11 )
-frame = 2
 playing = true
 
 [node name="Diamond7" type="Area2D" parent="Map/Gems"]
@@ -302,7 +288,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond7"]
 frames = SubResource( 11 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="Diamond8" type="Area2D" parent="Map/Gems"]
@@ -315,7 +301,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond8"]
 frames = SubResource( 11 )
-frame = 6
+frame = 4
 playing = true
 
 [node name="Diamond9" type="Area2D" parent="Map/Gems"]
@@ -328,7 +314,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond9"]
 frames = SubResource( 11 )
-frame = 6
+frame = 4
 playing = true
 
 [node name="Cup" type="Area2D" parent="Map"]
@@ -362,5 +348,6 @@ limit_right = 156
 limit_bottom = -88
 
 [node name="Greeny" parent="." instance=ExtResource( 3 )]
+position = Vector2( -112, 56 )
 
 [node name="GUI" parent="." instance=ExtResource( 6 )]

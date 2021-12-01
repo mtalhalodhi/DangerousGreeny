@@ -34,29 +34,29 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 112, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 3 )
 region = Rect2( 16, 112, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 3 )
 region = Rect2( 32, 112, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 3 )
 region = Rect2( 48, 112, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 3 )
 region = Rect2( 64, 112, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=15]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -92,19 +92,20 @@ tile_data = PoolIntArray( -65542, 1, 0, -65541, 3, 0, -65539, 1, 0, -65538, 8, 0
 [node name="Crown" type="AnimatedSprite" parent="Map"]
 position = Vector2( -24, -8 )
 frames = SubResource( 9 )
-frame = 4
+frame = 1
 playing = true
 
 [node name="Crown2" type="AnimatedSprite" parent="Map"]
 position = Vector2( 56, 24 )
 frames = SubResource( 9 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="Map"]
 light_mask = 0
 position = Vector2( 32, 48 )
 frames = SubResource( 15 )
+frame = 2
 playing = true
 offset = Vector2( -56, -8 )
 
@@ -123,7 +124,6 @@ shadow_gradient_length = 0.1
 light_mask = 0
 position = Vector2( 112, 80 )
 frames = SubResource( 15 )
-frame = 3
 playing = true
 offset = Vector2( -56, -8 )
 
