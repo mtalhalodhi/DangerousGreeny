@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/GameManager.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Levels/Level2.tscn" type="PackedScene" id=2]
@@ -12,10 +12,15 @@
 [ext_resource path="res://scenes/Levels/Level7.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Levels/Level8.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Levels/Level9.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Levels/Level10.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/WinScene.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/ScoreScene.tscn" type="PackedScene" id=15]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 2, 0 )
 script = ExtResource( 1 )
 MainMenu = ExtResource( 5 )
 Transition = ExtResource( 4 )
-Levels = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ]
+WinScene = ExtResource( 14 )
+ScoreScene = ExtResource( 15 )
+Levels = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ]

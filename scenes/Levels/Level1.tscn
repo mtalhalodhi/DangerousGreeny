@@ -185,7 +185,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Purple Gem"]
 frames = SubResource( 29 )
-frame = 5
+frame = 7
 playing = true
 
 [node name="Red Diamond" type="Area2D" parent="Map/Gems"]
@@ -198,7 +198,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Red Diamond"]
 frames = SubResource( 20 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Diamond1" type="Area2D" parent="Map/Gems"]
@@ -211,7 +211,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond1"]
 frames = SubResource( 11 )
-frame = 3
+frame = 5
 playing = true
 
 [node name="Diamond2" type="Area2D" parent="Map/Gems"]
@@ -224,7 +224,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond2"]
 frames = SubResource( 11 )
-frame = 7
+frame = 1
 playing = true
 
 [node name="Diamond3" type="Area2D" parent="Map/Gems"]
@@ -237,7 +237,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond3"]
 frames = SubResource( 11 )
-frame = 4
+frame = 6
 playing = true
 
 [node name="Diamond4" type="Area2D" parent="Map/Gems"]
@@ -250,6 +250,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond4"]
 frames = SubResource( 11 )
+frame = 2
 playing = true
 
 [node name="Diamond5" type="Area2D" parent="Map/Gems"]
@@ -262,7 +263,6 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond5"]
 frames = SubResource( 11 )
-frame = 6
 playing = true
 
 [node name="Diamond6" type="Area2D" parent="Map/Gems"]
@@ -275,7 +275,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond6"]
 frames = SubResource( 11 )
-frame = 4
+frame = 6
 playing = true
 
 [node name="Diamond7" type="Area2D" parent="Map/Gems"]
@@ -288,7 +288,6 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond7"]
 frames = SubResource( 11 )
-frame = 6
 playing = true
 
 [node name="Diamond8" type="Area2D" parent="Map/Gems"]
@@ -301,6 +300,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond8"]
 frames = SubResource( 11 )
+frame = 2
 playing = true
 
 [node name="Diamond9" type="Area2D" parent="Map/Gems"]
@@ -313,6 +313,7 @@ shape = SubResource( 35 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Map/Gems/Diamond9"]
 frames = SubResource( 11 )
+frame = 2
 playing = true
 
 [node name="Cup" type="Area2D" parent="Map"]

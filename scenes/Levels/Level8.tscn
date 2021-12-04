@@ -491,7 +491,7 @@ shape = SubResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Saucer/PathFollow2D/Saucer"]
 frames = SubResource( 37 )
-frame = 8
+frame = 7
 speed_scale = 1.5
 playing = true
 
@@ -528,7 +528,7 @@ shape = SubResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Saucer2/PathFollow2D/Saucer"]
 frames = SubResource( 37 )
-frame = 9
+frame = 8
 speed_scale = 1.5
 playing = true
 
@@ -565,7 +565,7 @@ shape = SubResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Saucer3/PathFollow2D/Saucer"]
 frames = SubResource( 37 )
-frame = 7
+frame = 6
 speed_scale = 1.5
 playing = true
 

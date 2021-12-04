@@ -52,5 +52,5 @@ shadow_gradient_length = 0.1
 [node name="Sprite" type="AnimatedSprite" parent="."]
 light_mask = 0
 frames = SubResource( 47 )
-frame = 2
+frame = 3
 playing = true
