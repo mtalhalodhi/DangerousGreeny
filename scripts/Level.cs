@@ -39,6 +39,26 @@ public class Level : Node2D
 			Lives--;
 		}
 
+		if (Input.IsActionJustPressed("cheat_life"))
+		{
+			Lives++;
+		}
+
+		if (Input.IsActionJustPressed("cheat_jetpack"))
+		{
+			Greeny.RefillJetpack();
+		}
+
+		if (Input.IsActionJustPressed("cheat_gun"))
+		{
+			Greeny.HasGun = true;
+		}
+
+		if (Greeny.DueForALife) {
+			Greeny.DueForALife = false;
+			Lives++;
+		}
+
 		if (Lives < 0) {
 			LevelLost = true;
 		}

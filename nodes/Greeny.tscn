@@ -85,9 +85,9 @@ Gravity = 500.0
 [node name="GreenyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="GreenyArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenyArea"]
 shape = SubResource( 39 )
 
 [node name="JetpackSprite" type="AnimatedSprite" parent="."]

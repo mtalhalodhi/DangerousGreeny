@@ -74,7 +74,6 @@ script = ExtResource( 5 )
 
 [node name="Background" type="TileMap" parent="Map"]
 modulate = Color( 0.219608, 0.219608, 0.219608, 1 )
-light_mask = 2
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 0
@@ -92,20 +91,19 @@ tile_data = PoolIntArray( -65542, 1, 0, -65541, 3, 0, -65539, 1, 0, -65538, 8, 0
 [node name="Crown" type="AnimatedSprite" parent="Map"]
 position = Vector2( -24, -8 )
 frames = SubResource( 9 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="Crown2" type="AnimatedSprite" parent="Map"]
 position = Vector2( 56, 24 )
 frames = SubResource( 9 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="Map"]
 light_mask = 0
 position = Vector2( 32, 48 )
 frames = SubResource( 15 )
-frame = 2
 playing = true
 offset = Vector2( -56, -8 )
 
@@ -124,6 +122,7 @@ shadow_gradient_length = 0.1
 light_mask = 0
 position = Vector2( 112, 80 )
 frames = SubResource( 15 )
+frame = 3
 playing = true
 offset = Vector2( -56, -8 )
 

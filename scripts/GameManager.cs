@@ -46,6 +46,10 @@ public class GameManager : Node
 				{
 					LoadLevel(CurrentLevel);
 				}
+				else 
+				{
+					LoadMainMenu();
+				}
 			}
 		}
 		if (State == GameState.Level)

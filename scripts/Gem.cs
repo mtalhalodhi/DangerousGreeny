@@ -3,6 +3,6 @@ using System;
 
 public class Gem : Area2D
 {
-    [Export] public int Score = 0;
+	[Export] public int Score = 0;
 
 }
